@@ -1,31 +1,43 @@
 // Arrays to keep track of each task's state
-const taskTitles = [];
-const taskComplete = [];
+function newTask(title, description) {
+  const task = {
+    title: title,
+    description: description,
+    complete: false,
 
-// Create a new task by adding to the arrays
-// A new task will be created as incomplete
-function newTask(title) {
-  taskTitles.push(title);
-  taskComplete.push(false);
-}
+    logState: function() {
+      console.log(`${this.title} has${this.complete ? " " : " not "}been completed`);
+    },
 
-// Mark a task as complete by setting the task's status in the `taskComplete` array to `true`
-function completeTask(taskIndex) {
-  taskComplete[taskIndex] = true;
-}
+    markCompleted: function() {
+      this.complete = true;
+    }
+  };
+  return task;
+};
 
-// Print the state of a task to the console in a nice readable way
-function logTaskState(taskIndex) {
-  const title = taskTitles[taskIndex];
-  const complete = taskComplete[taskIndex];
-  console.log(`${title} has${complete ? " " : " not "}been completed`);
-}
+const task1 = newTask('Clean Cat Litter', 'Take all the crap out of the litter box');
+const task2 = newTask('Do Laundry', '😩');
+const tasks = [task1, task2];
+const task3 = newTask('eat','sooooo much dirt');
+tasks.push(task3);
 
-// DRIVER CODE BELOW
 
-newTask("Clean Cat Litter"); // task 0
-newTask("Do Laundry"); // task 1
+// // Create a new task by adding to the arrays
+// // A new task will be created as incomplete
+// function newTask(title, description) {
+//   taskTitles.push(title);
+//   taskComplete.push(false);
+//   taskDescriptions.push(description);
+// }
 
-logTaskState(0); // Clean Cat Litter has not been completed
-completeTask(0);
-logTaskState(0); // Clean Cat Litter has been completed
+
+// // Print the state of a task to the console in a nice readable way
+
+
+
+task3.logState(); // Clean Cat Litter has not been completed
+task3.markCompleted();
+task3.logState(task1); // Clean Cat Litter has been completed
+
+console.log(tasks);
